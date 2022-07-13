@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "gestiondehoteles": {
+    "AdministracionHoteles": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -79,10 +79,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "gestiondehoteles:build:production"
+              "browserTarget": "AdministracionHoteles:build:production"
             },
             "development": {
-              "browserTarget": "gestiondehoteles:build:development"
+              "browserTarget": "AdministracionHoteles:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -90,7 +90,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "gestiondehoteles:build"
+            "browserTarget": "AdministracionHoteles:build"
           }
         },
         "test": {
@@ -114,5 +114,5 @@
       }
     }
   },
-  "defaultProject": "gestiondehoteles"
+  "defaultProject": "AdministracionHoteles"
 }
