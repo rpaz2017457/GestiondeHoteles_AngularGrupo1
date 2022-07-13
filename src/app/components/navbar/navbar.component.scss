@@ -1,5 +1,11 @@
+a {
+  text-decoration: none;
+}
 .navbar {
   padding: 0;
+}
+#hero h4{
+  color: #fff;
 }
 .navbar ul {
   margin: 0;
@@ -17,7 +23,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 0 10px 30px;
-  font-family: "Helvetica", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 14px;
   color: #ecd2d2;
   white-space: nowrap;
@@ -91,6 +97,7 @@
     left: -100%;
   }
 }
+
 .mobile-nav-toggle {
   color: #fff;
   font-size: 28px;
@@ -99,6 +106,7 @@
   line-height: 0;
   transition: 0.5s;
 }
+
 @media (max-width: 991px) {
   .mobile-nav-toggle {
     display: block;

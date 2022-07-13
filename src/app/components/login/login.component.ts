@@ -1,51 +1,58 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { Usuarios } from "src/app/models/usuarios.model";
-import { UsuariosService } from "src/app/services/usuarios.service";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Usuarios } from 'src/app/models/usuario.model';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"],
-  providers: [UsuariosService],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  providers: [UsuariosService]
 })
 export class LoginComponent implements OnInit {
   public usuariosModel: Usuarios;
 
-  constructor(
-    private _usuariosServices: UsuariosService,
-    private _router: Router
-  ) {
-    this.usuariosModel = new Usuarios("", "", "", "", "");
+  constructor(private _usuariosServices: UsuariosService, private _router: Router) {
+
+    this.usuariosModel = new Usuarios('', '', '', '', '');
+
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
+
 
   getToken() {
     this._usuariosServices.login(this.usuariosModel, "true").subscribe(
       (response) => {
         console.log(response.token);
-        localStorage.setItem("token", response.token);
+        localStorage.setItem("token", response.token)
+
       },
       (error) => {
-        console.log(<any>error);
+        console.log(<any>error)
       }
-    );
+    )
   }
+
 
   login() {
     this._usuariosServices.login(this.usuariosModel).subscribe(
       (response) => {
         this.getToken();
-        localStorage.setItem("identidad", JSON.stringify(response.usuario));
+        localStorage.setItem("identidad", JSON.stringify(response.usuario))
         console.log(response);
+        if (this._usuariosServices.obtenerIdentidad().rol == 'ROL_USUARIO') {
+          this._router.navigate(['usuario/inicio'])
+        } else if (this._usuariosServices.obtenerIdentidad().rol == 'ROL_ADMIN' || this._usuariosServices.obtenerIdentidad().rol == 'ROL_SUPERADMIN') {
+          this._router.navigate(['admin/inicio'])
+        }
 
-        this._router.navigate(["/inicio"]);
       },
       (error) => {
         console.log(<any>error);
       }
-    );
+    )
   }
 
   /*getToken(): Promise<any> {
@@ -63,21 +70,22 @@ export class LoginComponent implements OnInit {
   }*/
 
   /*login() {
-    this._usuariosServices.login(this.usuariosModel, "false").subscribe(
-      (response) => {
-        this.getToken().then(respuesta => {
-          localStorage.setItem('identidad', JSON.stringify(response.empresa));
-          if (this._usuariosServices.obtenerIdentidad().rol === 'EMPRESA') {
-            this._router.navigate(['/empresa/inicio']);
-          } else if (this._usuariosServices.obtenerIdentidad().rol === 'ADMIN') {
-            this._router.navigate(['/admin/dashboard']);
-          }
+     this._usuariosServices.login(this.usuariosModel, "false").subscribe(
+       (response) => {
+         this.getToken().then(respuesta => {
+           localStorage.setItem('identidad', JSON.stringify(response.empresa));
+           if (this._usuariosServices.obtenerIdentidad().rol === 'EMPRESA') {
+             this._router.navigate(['/empresa/inicio']);
+           } else if (this._usuariosServices.obtenerIdentidad().rol === 'ADMIN') {
+             this._router.navigate(['/admin/dashboard']);
+           }
 
-        });
-      },
-      (error) => {
-        console.log(<any>error);
-      }
-    )
-  }*/
+         });
+       },
+       (error) => {
+         console.log(<any>error);
+       }
+     )
+   }*/
+
 }

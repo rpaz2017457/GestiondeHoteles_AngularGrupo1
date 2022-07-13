@@ -1,81 +1,81 @@
-
 #hero {
-    width: 100%;
-    height: 75vh;
-    background: url("../assets/hero.jpg") top center;
-    background-size: cover;
-    position: relative;
-    margin-bottom: -80px;
+  width: 100%;
+  height: 55vh;
+  background-size: cover;
+  position: relative;
+  margin-bottom: -80px;
+}
+#hero:before {
+  content: "";
+  background: rgba(185, 112, 112, 0.85);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+#hero .hero-container {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  padding-top: 80px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+#hero h1 {
+  margin: 0 0 10px 0;
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 56px;
+  color: #fff;
+}
+#hero h2 {
+  color: #eee;
+  margin-bottom: 50px;
+  font-size: 20px;
+  font-weight: 300;
+}
+#hero .btn-get-started {
+  font-family: "Helvetica", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 28px 10px 28px;
+  border-radius: 50px;
+  transition: 0.5s;
+  border: 1px solid #fff;
+  color: #fff;
+}
+#hero .btn-get-started:hover {
+  background: #fff;
+  color: #b97070;
+  border: 1px solid #b97070;
+}
+@media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
   }
-  #hero:before {
-    content: "";
-    background: rgba(185, 112, 112, 0.85);
-    position: absolute;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-  #hero .hero-container {
-    position: absolute;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    padding-top: 80px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-  }
+}
+@media (max-width: 768px) {
   #hero h1 {
-    margin: 0 0 10px 0;
-    font-size: 48px;
-    font-weight: 300;
-    line-height: 56px;
-    color: #fff;
+    font-size: 28px;
+    line-height: 36px;
   }
   #hero h2 {
-    color: #eee;
-    margin-bottom: 50px;
-    font-size: 20px;
-    font-weight: 300;
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
   }
-  #hero .btn-get-started {
-    font-family: "Arial", sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    letter-spacing: 1px;
-    display: inline-block;
-    padding: 8px 28px 10px 28px;
-    border-radius: 50px;
-    transition: 0.5s;
-    border: 1px solid #fff;
-    color: #fff;
-  }
-  #hero .btn-get-started:hover {
-    background: #fff;
-    color: #b97070;
-    border: 1px solid #b97070;
-  }
-  @media (min-width: 1024px) {
-    #hero {
-      background-attachment: fixed;
-    }
-  }
-  @media (max-width: 768px) {
-    #hero h1 {
-      font-size: 28px;
-      line-height: 36px;
-    }
-    #hero h2 {
-      font-size: 18px;
-      line-height: 24px;
-      margin-bottom: 30px;
-    }
-  }
-
+}
+#hero h4{
+  color: #fff;
+}
 .about-area {
   background-color: #f9f9f9;
 }
@@ -85,7 +85,7 @@
 }
 
 .single-well ul li {
-  color: rgb(59, 0, 0);
+  color: #444;
   display: block;
   padding: 80px;
 }
@@ -97,9 +97,8 @@
 }
 
 .single-well p {
-  color: rgb(59, 0, 0);
+  color: #444;
 }
-
 
 .services .icon-box {
   margin-bottom: 20px;
@@ -121,7 +120,7 @@
   text-transform: uppercase;
 }
 .services .title a {
-  color: #110000;
+  color: #403434;
   transition: 0.3s;
 }
 .services .icon-box:hover .title a {
@@ -133,7 +132,7 @@
 }
 
 body {
-  font-family: "Helvetica", sans-serif;
+  font-family: "Open Sans", sans-serif;
   color: #777;
 }
 
@@ -147,7 +146,13 @@ a:hover {
   text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6, .font-primary {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-primary {
   font-family: "Helvetica", sans-serif;
 }
 
@@ -156,7 +161,7 @@ section {
 }
 
 .section-bg {
-  background-color: #f9f2f2;
+  background-color: #f2f9f8;
 }
 
 .section-title {
@@ -176,7 +181,7 @@ section {
 
 .breadcrumbs {
   padding: 20px 0;
-  background-color: #ffd9d9;
+  background-color: #faf6f6;
   min-height: 40px;
   margin-top: 80px;
 }
@@ -204,7 +209,7 @@ section {
 .breadcrumbs ol li + li::before {
   display: inline-block;
   padding-right: 10px;
-  color: rgb(125, 113, 108);
+  color: #7d6c6c;
   content: "/";
 }
 @media (max-width: 768px) {
@@ -219,7 +224,6 @@ section {
   }
 }
 
-
 .back-to-top {
   position: fixed;
   visibility: hidden;
@@ -227,7 +231,7 @@ section {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #ffd9d9;
+  background: #b97070;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -239,7 +243,7 @@ section {
   line-height: 0;
 }
 .back-to-top:hover {
-  background: #ffd9d9;
+  background: #c68b8b;
   color: #fff;
 }
 .back-to-top.active {
@@ -248,20 +252,19 @@ section {
 }
 
 .call-to-action {
-  background: linear-gradient(rgba(42, 1, 1, 0.5), rgba(57, 7, 7, 0.5)), url("../assets/hero") fixed center center;
   background-size: cover;
   padding: 60px 0;
 }
 .call-to-action h3 {
-  color: #fff;
+  color: #000;
   font-size: 28px;
   font-weight: 700;
 }
 .call-to-action p {
-  color: #fff;
+  color: #000;
 }
 .call-to-action .cta-btn {
-  font-family: "Lato", sans-serif;
+  font-family: "Helvetica", sans-serif;
   font-weight: 400;
   font-size: 16px;
   letter-spacing: 1px;
@@ -270,11 +273,11 @@ section {
   border-radius: 25px;
   transition: 0.5s;
   margin-top: 10px;
-  border: 2px solid #fff;
-  color: #fff;
+  border: 2px solid #b97070;
+  color: #b97070;
 }
 .call-to-action .cta-btn:hover {
-  background: #b97070;
+  background: #fff;
   border: 2px solid #b97070;
 }
 
@@ -301,7 +304,8 @@ section {
   margin-bottom: 5px;
   transition: all 0.3s ease-in-out;
 }
-.portfolio #portfolio-flters li:hover, .portfolio #portfolio-flters li.filter-active {
+.portfolio #portfolio-flters li:hover,
+.portfolio #portfolio-flters li.filter-active {
   background: #b97070;
   color: #fff;
 }
@@ -363,14 +367,20 @@ section {
   margin-top: 20px;
   position: relative;
 }
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
+.portfolio-details
+  .portfolio-details-slider
+  .swiper-pagination
+  .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
   background-color: #fff;
   opacity: 1;
   border: 1px solid #b97070;
 }
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
+.portfolio-details
+  .portfolio-details-slider
+  .swiper-pagination
+  .swiper-pagination-bullet-active {
   background-color: #b97070;
 }
 .portfolio-details .portfolio-info {
@@ -402,4 +412,56 @@ section {
 }
 .portfolio-details .portfolio-description p {
   padding: 0;
+}
+
+.faq {
+  padding: 60px 0;
+}
+.faq .faq-list {
+  padding: 0;
+  list-style: none;
+}
+.faq .faq-list li {
+  border-bottom: 1px solid #efdede;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+.faq .faq-list .question {
+  display: block;
+  position: relative;
+  font-family: "Helvetica", sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+  padding-left: 25px;
+  cursor: pointer;
+  color: #a55151;
+  transition: 0.3s;
+}
+.faq .faq-list i {
+  font-size: 16px;
+  position: absolute;
+  left: 0;
+  top: -2px;
+}
+.faq .faq-list p {
+  margin-bottom: 0;
+  padding: 10px 0 0 25px;
+}
+.faq .faq-list .icon-show {
+  display: none;
+}
+.faq .faq-list .collapsed {
+  color: #403434;
+}
+.faq .faq-list .collapsed:hover {
+  color: #b97070;
+}
+.faq .faq-list .collapsed .icon-show {
+  display: inline-block;
+  transition: 0.6s;
+}
+.faq .faq-list .collapsed .icon-close {
+  display: none;
+  transition: 0.6s;
 }

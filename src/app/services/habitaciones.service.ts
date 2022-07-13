@@ -1,16 +1,16 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { HabitacionesModel } from "../models/habitaciones.model";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HabitacionesModel } from '../models/habitaciones.model';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class HabitacionesService {
-  public url: String = "http://localhost:3000/api";
+  public url: String = 'https://gestionhotelesgrupo1.herokuapp.com/api';
   public headersVariable = new HttpHeaders().set(
-    "Content-Type",
-    "application/json"
+    'Content-Type',
+    'application/json'
   );
   public token: any;
   public identidad: any;
@@ -18,20 +18,20 @@ export class HabitacionesService {
   constructor(public _http: HttpClient) {}
 
   obtenerHabitaciones(idHotel: String): Observable<any> {
-    return this._http.get(this.url + "/buscarHabitaciones/" + idHotel, {
+    return this._http.get(this.url + '/buscarHabitaciones/' + idHotel, {
       headers: this.headersVariable,
     });
   }
 
   agregarHabitaciones(
-    modelHabitacion: HabitacionesModel,
     idHotel: String,
+    modelHabitacion: HabitacionesModel,
     token: any
   ): Observable<any> {
-    let headersToken = this.headersVariable.set("Authorization", token);
+    let headersToken = this.headersVariable.set('Authorization', token);
     let parametros = JSON.stringify(modelHabitacion);
     return this._http.post(
-      this.url + "/agregarHabitacion/" + idHotel,
+      this.url + '/agregarHabitacion/' + idHotel,
       parametros,
       { headers: headersToken }
     );
@@ -41,26 +41,39 @@ export class HabitacionesService {
     modelHabitacion: HabitacionesModel,
     token: any
   ): Observable<any> {
-    let headersToken = this.headersVariable.set("Authorization", token);
+    let headersToken = this.headersVariable.set('Authorization', token);
     let parametros = JSON.stringify(modelHabitacion);
     return this._http.put(
-      this.url + "/editarHabitacion/" + modelHabitacion._id,
+      this.url + '/editarHabitacion/' + modelHabitacion._id,
       parametros,
       { headers: headersToken }
     );
   }
 
   obtenerHabitacionesId(idHabitacion: String, token: any): Observable<any> {
-    let headersToken = this.headersVariable.set("Authorization", token);
-    return this._http.get(this.url + "/buscarHabitacionId/" + idHabitacion, {
+    let headersToken = this.headersVariable.set('Authorization', token);
+    return this._http.get(this.url + '/buscarHabitacionId/' + idHabitacion, {
       headers: headersToken,
     });
   }
 
   eliminarHabitaciones(idHabitacion: String, token: any): Observable<any> {
-    let headersToken = this.headersVariable.set("Authorization", token);
-    return this._http.delete(this.url + "/eliminarHabitacion/" + idHabitacion, {
+    let headersToken = this.headersVariable.set('Authorization', token);
+    return this._http.delete(this.url + '/eliminarHabitacion/' + idHabitacion, {
       headers: headersToken,
     });
+  }
+
+  reservarHabitacion(
+    modelHabitacion: HabitacionesModel,
+    token: any
+  ): Observable<any> {
+    let headersToken = this.headersVariable.set('Authorization', token);
+    let parametros = JSON.stringify(modelHabitacion);
+    return this._http.put(
+      this.url + '/reservarHabitacion/' + modelHabitacion._id,
+      parametros,
+      { headers: headersToken }
+    );
   }
 }

@@ -1,24 +1,24 @@
 <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-amarillo">
         <h5 class="modal-title" id="exampleModalLabel">Agregar Hoteles</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form #agregarHotel="ngForm">
           <div class="mb-3">
-            <label for="inputNombre" class="form-label">Nombre:</label>
+            <label for="inputNombre" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="inputNombre" name="nombre" #nombre="ngModel"
               [(ngModel)]="hotelModelPost.nombre">
           </div>
           <div class="mb-3">
-            <label for="inputNombre" class="form-label">Direccion:</label>
+            <label for="inputNombre" class="form-label">Dirección</label>
             <input type="text" class="form-control" id="inputDireccion" name="direccion" #direccion="ngModel"
               [(ngModel)]="hotelModelPost.direccion">
           </div>
           <div class="mb-3">
-            <label for="inputNombre" class="form-label">Pais:</label>
+            <label for="inputNombre" class="form-label">País</label>
             <input type="text" class="form-control" id="inputPais" name="pais" #pais="ngModel"
               [(ngModel)]="hotelModelPost.pais">
           </div>
@@ -35,60 +35,126 @@
 
 <section id="hero">
   <div class="hero-container">
+    <h4><a>Grupo 1 - IN6BM2</a></h4>
+    <br>
     <h1>Hoteles</h1>
   </div>
 </section>
-<section class="espacio"></section>
-<section class="container">
-  <div class="row  gx-3 gy-3 align-items-center" style="height: 75vh" *ngFor="let hotel of hotelModelGet">
-    <div class="col">
-      <div class="card" style="width: 18rem;">
-        <img src="../assets/hotelesinicio.jpg" class="card-img-top">
-        <div class="card-body">
-          <p class="card-text">Nombre del Hotel: {{hotel.nombre}}</p>
-          <p class="card-text">Direccion del Hotel: {{hotel.direccion}}</p>
-          <p class="card-text">Pais: {{hotel.pais}}</p>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregar"
-            *ngIf="_hotelesService.obtenerIdentidad().rol === 'ROL_ADMIN'">Agregar</button>
-          <button type="button" class="btn btn-warning" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
-            aria-controls="offcanvasScrolling" (click)="getHotelesId(hotel._id)"
-            *ngIf="_hotelesService.obtenerIdentidad().rol === 'ROL_ADMIN'">Editar </button>
-          <button type="button" class="btn btn-danger" (click)="deleteHotel(hotel._id)"
-            *ngIf="_hotelesService.obtenerIdentidad().rol === 'ROL_ADMIN'">Eliminar</button>
-        </div>
-        <button type="button" class="btn btn-success" [routerLink]="['/habitaciones', hotel._id]">Ver
-          Habitaciones</button>
-        <button type="button" class="btn btn-warning" [routerLink]="['/eventos', hotel._id]">Ver Eventos</button>
+
+
+<div class="container  min-vh-100 py-4">
+  <div class="row">
+    <div class="col-md-5 mx-auto">
+      <div class="small fw-light color-texto text-center">
+        <h5>¿Deseas encontrar un Hotel?</h5>
+      </div>
+      <div class="input-group">
+        <input class="form-control border-end-0 border rounded-pill" [(ngModel)]="buscar" name="buscar"
+          placeholder="nombre del hotel" type="search" value="search" id="example-search-input">
+        <span class="input-group-append">
+          <button class="btn btn-outline-info bg-white border-bottom-0 border rounded-pill ms-n5" type="button">
+            Buscar
+          </button>
+        </span>
       </div>
     </div>
   </div>
-</section>
 
-<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
-  id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Editar</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <section class="espacio"></section>
+
+  <div class="container">
+    <button type="button" class="btn btn-success my-3 " data-bs-toggle="modal" data-bs-target="#modalAgregar"
+      *ngIf="_hotelesService.obtenerIdentidad().rol === 'ROL_ADMIN' || _hotelesService.obtenerIdentidad().rol === 'ROL_SUPERADMIN'">Agregar
+      Hotel</button>
   </div>
-  <div class="offcanvas-body">
-    <form>
-      <div class="mb-3">
-        <label for="inputNombre" class="form-label">Nombre:</label>
-        <input type="text" class="form-control" id="inputNombre" name="nombre" #nombre="ngModel"
-          [(ngModel)]="hotelModelGetId.nombre">
+
+  <section class="container" *ngIf="_hotelesService.obtenerHoteles()==undefined">
+    <div class="alert alert-warning" role="alert">
+      <h4 class="alert-heading">¡Lo sentimos!</h4>
+      <p>No hay hoteles para mostrar en este momento, ¡Por favor revisa mas tarde!</p>
+      <hr>
+      <p class="mb-0" *ngIf="_hotelesService.obtenerIdentidad().rol === 'ROL_ADMIN'">¡Puedes agregar un nuevo hotel!
+      </p>
+    </div>
+  </section>
+
+
+  <section class="container">
+    <div class="row  gx-3 gy-3 align-items-center" style="height: 50vh">
+      <div class="col" *ngFor="let hotel of hotelModelGet  |buscar:buscar">
+        <div class="card mb-5" style="width: 18rem;">
+          <img src="../assets/hotelesinicio.jpg" class="card-img-top">
+          <div class="card-body">
+            <p class="card-text">Nombre: {{hotel.nombre}}</p>
+            <p class="card-text">Direccion: {{hotel.direccion}}</p>
+            <p class="card-text">Pais: {{hotel.pais}}</p>
+            <div style="width: 80%; background: transparent; margin: 5px auto; padding:1px ">
+              <button style=" width: 45%;" type="button" class="btn btn-warning mx-1" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"
+                (click)="getHotelesId(hotel._id)" *ngIf="_hotelesService.obtenerIdentidad().rol === 'ROL_ADMIN'">Editar
+              </button>
+              <button style="width:45%;" type="button" class="btn btn-danger mx-1" (click)="deleteHotel(hotel._id)"
+                *ngIf="_hotelesService.obtenerIdentidad().rol === 'ROL_ADMIN'">Eliminar</button>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div style="width: 80%; background: transparent; margin: 5px auto; padding:1px ">
+              <!-- usuario -->
+              <button style="display:block; width: 75%; margin: 5px auto;" type="button" class="btn btn-success"
+                *ngIf="_hotelesService.obtenerIdentidad().rol === 'ROL_USUARIO'"
+                [routerLink]="['/usuario/habitaciones', hotel._id]">Ver Habitaciones</button>
+              <button style="display:block; width: 75%; margin: 5px auto;" type="button" class="btn btn-warning"
+                *ngIf="_hotelesService.obtenerIdentidad().rol === 'ROL_USUARIO'"
+                [routerLink]="['/usuario/eventos', hotel._id]">Ver Eventos</button>
+              <button style="display:block; width: 75%; margin: 5px auto;" type="button" class="btn btn-primary"
+                *ngIf="_hotelesService.obtenerIdentidad().rol === 'ROL_USUARIO'"
+                [routerLink]="['/usuario/servicios', hotel._id]">Ver Servicios</button>
+              <!-- admin -->
+              <button style="display:block; width: 75%; margin: 5px auto;" type="button" class="btn btn-success"
+                *ngIf="_hotelesService.obtenerIdentidad().rol === 'ROL_ADMIN' || _hotelesService.obtenerIdentidad().rol === 'ROL_SUPERADMIN'"
+                [routerLink]="['/admin/habitaciones', hotel._id]">Ver Habitaciones</button>
+              <button style="display:block; width: 75%; margin: 5px auto;" type="button" class="btn btn-warning"
+                *ngIf="_hotelesService.obtenerIdentidad().rol === 'ROL_ADMIN' || _hotelesService.obtenerIdentidad().rol === 'ROL_SUPERADMIN'"
+                [routerLink]="['/admin/eventos', hotel._id]">Ver Eventos</button>
+              <button style="display:block; width: 75%; margin: 5px auto;" type="button" class="btn btn-primary"
+                *ngIf="_hotelesService.obtenerIdentidad().rol === 'ROL_ADMIN' || _hotelesService.obtenerIdentidad().rol === 'ROL_SUPERADMIN'"
+                [routerLink]="['/admin/servicios', hotel._id]">Ver Servicios</button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="inputNombre" class="form-label">Direccion:</label>
-        <input type="text" class="form-control" id="inputDireccion" name="direccion" #direccion="ngModel"
-          [(ngModel)]="hotelModelGetId.direccion">
-      </div>
-      <div class="mb-3">
-        <label for="inputNombre" class="form-label">Pais:</label>
-        <input type="text" class="form-control" id="inputPais" name="pais" #pais="ngModel"
-          [(ngModel)]="hotelModelGetId.pais">
-      </div>
-      <button class="btn btn-danger" data-bs-dismiss="offcanvas">Cerrar</button>
-      <button class="btn btn-success" data-bs-dismiss="offcanvas" (click)="putHotel()">Editar</button>
-    </form>
+    </div>
+  </section>
+
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+    id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header bg-amarillo">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Editar</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <form>
+        <div class="mb-3">
+          <label for="inputNombre" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="inputNombre" name="nombre" #nombre="ngModel"
+            [(ngModel)]="hotelModelGetId.nombre">
+        </div>
+        <div class="mb-3">
+          <label for="inputNombre" class="form-label">Direccion</label>
+          <input type="text" class="form-control" id="inputDireccion" name="direccion" #direccion="ngModel"
+            [(ngModel)]="hotelModelGetId.direccion">
+        </div>
+        <div class="mb-3">
+          <label for="inputNombre" class="form-label">Pais</label>
+          <input type="text" class="form-control" id="inputPais" name="pais" #pais="ngModel"
+            [(ngModel)]="hotelModelGetId.pais">
+        </div>
+        <div style="width: 70%; background: transparent; margin: 5px auto; padding:1px ">
+          <button style=" width: 45%; margin: 0 5px;" class="btn btn-danger "
+            data-bs-dismiss="offcanvas">Cerrar</button>
+          <button style=" width: 45%; margin: 0 5px;" class="btn btn-success " data-bs-dismiss="offcanvas"
+            (click)="putHotel()">Actualizar</button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>

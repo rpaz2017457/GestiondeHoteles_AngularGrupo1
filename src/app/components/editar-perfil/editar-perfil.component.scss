@@ -1,18 +1,25 @@
 .gradient-custom {
-  background: #f68265;
+  background: #f6bc65;
+
   background: -webkit-linear-gradient(
     to right bottom,
-    rgb(184, 88, 43),
+    rgb(184, 43, 43),
     rgb(215, 97, 97)
   );
+
   background: linear-gradient(
     to right bottom,
-    rgb(184, 88, 43),
+    rgb(184, 43, 43),
     rgb(215, 97, 97)
   );
 }
 
 .btn-guardar {
-  background-color: rgb(210, 104, 104);
+  background-color: rgb(210, 143, 104);
+  border-radius: 50px;
+}
+
+.btn-eliminarC {
+  background-color: rgb(229, 86, 86);
   border-radius: 50px;
 }

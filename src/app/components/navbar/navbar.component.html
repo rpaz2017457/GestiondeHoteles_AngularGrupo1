@@ -1,17 +1,43 @@
 <header id="header" class="fixed-top d-flex align-items-center">
   <div class="container d-flex align-items-center">
-
-    <div class="logo me-auto">
-      <h1><a href="index.html">Grupo 1 - IN6BM2</a></h1>
-    </div>
-    <nav id="navbar" class="navbar">
+ <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link" routerLinkActive="activate" routerLink="/bienvenida">Inicio</a></li>
-        <li><a class="nav-link scrollto" href="#login" routerLink="/login">Iniciar Sesión</a></li>
-        <li><a class="nav-link scrollto" href="#registrar" routerLink="/registrar">Registrarse</a></li>
-        <li><a class="nav-link scrollto" href="#editarPerfil" routerLink="/editar-perfil">Perfil</a></li>
+        <!-- redireccionamiento de usuario -->
+        <li><a *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_USUARIO'" class="nav-link"
+            routerLinkActive="activate" routerLink="/usuario/bienvenida">Inicio</a></li>
+        <li><a *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_USUARIO'" class="nav-link"
+            routerLinkActive="activate" routerLink="/usuario/inicio">Hoteles</a></li>
+
+        <!-- redireccionamiento de admin -->
+        <li><a
+            *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_ADMIN' || _usuarioService.obtenerIdentidad().rol === 'ROL_SUPERADMIN'"
+            class="nav-link" routerLinkActive="activate" routerLink="/admin/bienvenida">Inicio</a></li>
+        <li><a
+            *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_ADMIN' || _usuarioService.obtenerIdentidad().rol === 'ROL_SUPERADMIN'"
+            class="nav-link" routerLinkActive="activate" routerLink="/admin/inicio">Hoteles</a></li>
+
+        <li class="dropdown"><a
+            *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_ADMIN' || _usuarioService.obtenerIdentidad().rol === 'ROL_SUPERADMIN' || _usuarioService.obtenerIdentidad().rol === 'ROL_USUARIO'"><span>Perfil</span>
+            <i class="bi bi-chevron-down"></i></a>
+          <ul>
+            <!-- usuario -->
+            <li><a *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_USUARIO'"
+                routerLink="/usuario/editar-perfil">Editar Perfil</a></li>
+            <li><a *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_USUARIO'"
+                routerLink="/usuario/factura">Facturas</a></li>
+            <!-- admin -->
+            <li><a
+                *ngIf="_usuarioService.obtenerIdentidad().rol === 'ROL_ADMIN' || _usuarioService.obtenerIdentidad().rol === 'ROL_SUPERADMIN'"
+                routerLink="/admin/editar-perfil">Editar Perfil</a></li>
+
+            <li class="dropdown"><a href="/login" (click)="cerrarSesion()"><span>Cerrar Sesion</span> <i
+                  class="bi bi-chevron-right"></i></a>
+            </li>
+          </ul>
+        </li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav>
   </div>
+  
 </header>

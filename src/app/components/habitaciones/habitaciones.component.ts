@@ -34,13 +34,16 @@ export class HabitacionesComponent implements OnInit {
     })
   }
 
-  getHabitaciones(idHotel:String) {
+  getHabitaciones(idHotel) {
     this._habitacionesService.obtenerHabitaciones(idHotel).subscribe(
       response => {
         if (response.habitaciones == 0) {
           console.log("datos vacios")
+          this.habitacionesModelGet=response.habitaciones
+          this.validation=false
         } else {
           this.habitacionesModelGet = response.habitaciones
+          this.validation= true
         }
         console.log(this.habitacionesModelGet)
       },
@@ -61,7 +64,7 @@ export class HabitacionesComponent implements OnInit {
   }
 
   postHabitaciones(){
-    this._habitacionesService.agregarHabitaciones(this.habitacionesModelPost,this.idHotel, this.token).subscribe(
+    this._habitacionesService.agregarHabitaciones (this.idHotel, this.habitacionesModelPost,this.token).subscribe(
       response => {
           this.getHabitaciones(this.idHotel)
       },
@@ -91,6 +94,18 @@ export class HabitacionesComponent implements OnInit {
 
     }
       )
+  }
+
+  resevarHabitaciones(){
+    this._habitacionesService.reservarHabitacion(this.habitacionesModelGetId,this.token).subscribe(
+      response=>{
+        this.getHabitaciones(this.idHotel)
+      },
+      error=>{
+        console.log(<any>error)
+      }
+
+    )
   }
 
 }

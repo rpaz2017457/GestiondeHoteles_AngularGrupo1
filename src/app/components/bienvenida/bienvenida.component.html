@@ -1,16 +1,56 @@
 <section id="hero">
   <div class="hero-container">
-    <h1><b>Hotelvia</b> es la mejor herramienta a tu alcance, cuando de Hoteles se trata</h1>
-    <h2>compara entre cientos de Hoteles y reserva el tuyo al mejor precio.</h2>
-    <a href="#about" class="btn-get-started scrollto" routerLinkActive="activate" routerLink="/login">Reserva Ya</a>
+    <div class="container align-items-center">
+      <h4><a>Grupo 1 - IN6BM2</a></h4>
+      <br>
+    </div>
+    <h1><b>Hotelvia</b> </h1>
+    <h2>¿Deseas viajar? Primero viaja con nosotros...</h2>
+    <a href="#about" class="btn-get-started scrollto" routerLinkActive="activate" routerLink="/login">Reservar Aquí</a>
   </div>
 </section>
 
 <main id="main">
   <section id="services" class="services section-bg">
     <div class="container">
+      <section id="portfolio" class="portfolio" class="call-to-action">
+          <div class="section-title">
+            <h2>Galeria de Imágenes</h2>
+          </div>
+    
+          <div class="row portfolio-container">
+    
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+              <div class="portfolio-wrap">
+                <img src="../assets/hotelgaleria1.jpg" class="img-fluid" alt="">
+              </div>
+            </div>
+    
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+              <div class="portfolio-wrap">
+                <img src="../assets/hotelgaleria3.jpg" class="img-fluid" alt="">
+              </div>
+            </div>
+    
+            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+              <div class="portfolio-wrap">
+                <img src="../assets/hotelgaleria4.jpg" class="img-fluid" alt="">
+              </div>
+            </div>
+            
+            <div class="text-center">
+            <br>
+            <br>
+              <h3>¿Quieres ver todos nuestros Hoteles?</h3>
+              <a *ngIf="redireccionamiento() === 0" class="cta-btn" href="#" routerLink="/inicio">Click Aquí</a>
+              <a *ngIf="redireccionamiento() === 1" class="cta-btn" href="#" routerLink="/usuario/inicio">Click Aquí</a>
+              <a *ngIf="redireccionamiento() === 2" class="cta-btn" href="#" routerLink="/admin/inicio">Click Aquí</a>
+            </div>
+          </div>
+
+    <section >
       <div class="section-title">
-        <h2>Sobre Nosotros</h2>
+        <h2>¿Quienes Somos?</h2>
         <p>Hotelvia nace de la necesidad de todos para poder viajar con los mejores planes en hotelería, buscamos
           hacerte tener
           una excelente experiencia de viaje cuando de hospedaje se trata, brindandote miles de opciones y precios para
@@ -18,90 +58,5 @@
           escoger la que mejor se adapte a ti.
         </p>
       </div>
+    </section>
 
-      <div class="row">
-        <div class="col-lg-4 col-md-6 icon-box">
-          <div class="icon"><i class="bi bi-calendar"></i></div>
-          <h4 class="title"><a>Reservación</a></h4>
-          <p class="description">¿Es tu primera vez viajando?¿Deseas hacer las reservaciones en tus hoteles preferidos
-            de forma mas rapida?
-            Hotelvia pone a tu disposición un algoritmo personalizado e intuitivo para apoyarte con tus reservaciones de
-            una manera fácil,
-            sencilla y rápida.
-          </p>
-        </div>
-        <div class="col-lg-4 col-md-6 icon-box">
-          <div class="icon"><i class="fa-solid fa-burger-soda"></i></div>
-          <h4 class="title"><a>Alimentación y Bebidas</a></h4>
-          <p class="description">Como empresa siempre nos preocuparemos por tu bienestar y tu experiencia reservando hoteles con nosotros
-            es por eso que muchos de nuestros Hoteles Asociados (HAs) te ofrecen planes que incluyen alimentación y bebidas durante tu estadía.
-          </p>
-        </div>
-        <div class="col-lg-4 col-md-6 icon-box">
-          <div class="icon"><i class="fa-solid fa-bed-front"></i></div>
-          <h4 class="title"><a>Hospedaje y Habitaciones</a></h4>
-          <p class="description">En nuestro sitio web obtienes toda la información sobre cada una de las habitaciones y servicios extras
-            dependiendo la habitación que escojas para hospedarte, contamos con gran variedad de opciones.
-          </p>
-        </div>
-        <div class="col-lg-4 col-md-6 icon-box">
-          <div class="icon"><i class="fa-solid fa-face-smile-relaxed"></i></div>
-          <h4 class="title"><a>Amenidades</a></h4>
-          <p class="description">Nuestros hoteles cuentan con distintas amenidades que te harán pasar un gran rato solo o acompañado
-            y que tu experiencia hospedandote sea la ideal. Contamos con spa, bar, gimnasio, canchas para hacer deporte y piscinas.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="call-to-action">
-    <div class="container">
-
-      <div class="text-center">
-        <h3>¿Quieres ver todos nuestros Hoteles?</h3>
-        <a class="cta-btn" href="#" routerLink="/inicio">Pulsa Aquí</a>
-      </div>
-
-    </div>
-  </section>
-  <section id="portfolio" class="portfolio">
-    <div class="container">
-      <div class="section-title">
-        <h2>Galería de Imágenes</h2>
-      </div>
-      <div class="row portfolio-container">
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="../assets/hotelgaleria1.jpg" class="img-fluid" alt="">
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="../assets/hotelgaleria2.jpg" class="img-fluid" alt="">
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="../assets/hotelgaleria3.jpg" class="img-fluid" alt="">
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="../assets/hotelgaleria4.jpg" class="img-fluid" alt="">
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <div class="portfolio-wrap">
-            <img src="../assets/hotelgaleria5.jpg" class="img-fluid" alt="">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</section>

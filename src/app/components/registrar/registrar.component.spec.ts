@@ -1,15 +1,16 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegistrarComponent } from "./registrar.component";
+import { RegistrarComponent } from './registrar.component';
 
-describe("RegistrarComponent", () => {
+describe('RegistrarComponent', () => {
   let component: RegistrarComponent;
   let fixture: ComponentFixture<RegistrarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RegistrarComponent],
-    }).compileComponents();
+      declarations: [ RegistrarComponent ]
+    })
+    .compileComponents();
   });
 
   beforeEach(() => {
@@ -18,7 +19,7 @@ describe("RegistrarComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
